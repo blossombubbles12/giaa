@@ -23,6 +23,11 @@
 # misc
 .DS_Store
 *.pem
+*.exe
+*.zip
+url.txt
+scratch/
+public/output.json
 
 # debug
 npm-debug.log*
