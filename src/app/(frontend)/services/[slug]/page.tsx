@@ -141,7 +141,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         title={service.title}
         description={service.desc}
         breadcrumbs={[
-          { name: 'Services', url: '/services' },
+          { name: 'Services', href: '/services' },
           { name: service.title }
         ]}
       />
