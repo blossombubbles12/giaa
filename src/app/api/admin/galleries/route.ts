@@ -42,7 +42,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Title is required' }, { status: 400 });
         }
 
-        const folderPath = `gia/galleries/${title.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]+g, '')}`;
+        const folderPath = `gia/galleries/${title.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]+/g, '')}`;
 
         const uploadedImages: { url: string, publicId: string }[] = [];
 

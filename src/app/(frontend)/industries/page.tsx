@@ -1,6 +1,6 @@
 'use client';
 
-import { Building2, Factory, OilIcon, HardHat, Stethoscope, Cpu, Landmark, Store, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Building2, Factory, Fuel, HardHat, Stethoscope, Cpu, Landmark, Store, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -9,7 +9,7 @@ import { PageHeader } from '@/components/frontend/layout/PageHeader';
 const industries = [
   { name: 'Banking & Financial Services', icon: Landmark, desc: 'Regulatory compliance, risk management, internal audit, and financial control for banks, insurance companies, and financial institutions.' },
   { name: 'Manufacturing', icon: Factory, desc: 'ISO certification, quality management, operational efficiency, supply chain optimization, and health & safety compliance.' },
-  { name: 'Oil & Gas', icon: OilIcon, desc: 'Risk management, environmental compliance, safety management systems, and governance frameworks for the energy sector.' },
+  { name: 'Oil & Gas', icon: Fuel, desc: 'Risk management, environmental compliance, safety management systems, and governance frameworks for the energy sector.' },
   { name: 'Construction & Real Estate', icon: HardHat, desc: 'Project management systems, quality assurance, safety compliance, and business transformation for construction firms.' },
   { name: 'Healthcare', icon: Stethoscope, desc: 'Medical device quality management (ISO 13485), laboratory compliance, healthcare governance, and risk management.' },
   { name: 'Technology', icon: Cpu, desc: 'Information security (ISO 27001), IT service management (ISO 20000), cybersecurity advisory, and IT governance.' },
