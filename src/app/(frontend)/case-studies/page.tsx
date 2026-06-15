@@ -88,7 +88,7 @@ export default function CaseStudiesPage() {
               Want to See Similar Results <span className="text-brand">for Your Organization?</span>
             </h2>
             <Link href="/contact">
-              <Button className="bg-brand hover:bg-brand-dark text-primary-blue font-bold rounded-full h-14 px-10 shadow-xl active:scale-95 transition-all">
+              <Button className="bg-brand hover:bg-brand-dark text-white font-bold rounded-full h-14 px-10 shadow-xl active:scale-95 transition-all">
                 Start Your Success Story <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>

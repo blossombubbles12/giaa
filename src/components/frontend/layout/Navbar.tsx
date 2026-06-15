@@ -200,7 +200,7 @@ export function Navbar({ categories = [] }: NavbarProps) {
           {/* Actions */}
           <div className="flex items-center gap-3">
             <Link href="/contact">
-              <Button className="hidden lg:inline-flex bg-brand hover:bg-brand-dark text-primary-blue font-bold rounded-full px-6 shadow-lg active:scale-95 transition-all text-xs">
+              <Button className="hidden lg:inline-flex bg-brand hover:bg-brand-dark text-white font-bold rounded-full px-6 shadow-lg active:scale-95 transition-all text-xs">
                 Request Consultation
               </Button>
             </Link>
@@ -248,7 +248,7 @@ export function Navbar({ categories = [] }: NavbarProps) {
                     ))}
                     <hr className="border-slate-100 dark:border-slate-800 my-2" />
                     <Link href="/contact">
-                      <Button className="w-full rounded-2xl h-12 font-bold justify-start px-6 bg-brand text-primary-blue hover:bg-brand-dark">
+                      <Button className="w-full rounded-2xl h-12 font-bold justify-start px-6 bg-brand text-white hover:bg-brand-dark hover:text-white">
                         Request Consultation
                       </Button>
                     </Link>

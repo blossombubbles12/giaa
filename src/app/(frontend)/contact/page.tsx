@@ -61,7 +61,7 @@ export default function ContactPage() {
                 <label className="text-xs font-bold uppercase tracking-widest text-slate-400">Message *</label>
                 <textarea rows={5} className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand/50 resize-none" placeholder="Tell us about your needs..." />
               </div>
-              <Button className="bg-brand hover:bg-brand-dark text-primary-blue font-bold rounded-full h-14 px-10 shadow-xl active:scale-95 transition-all w-full md:w-auto">
+              <Button className="bg-brand hover:bg-brand-dark text-white font-bold rounded-full h-14 px-10 shadow-xl active:scale-95 transition-all w-full md:w-auto">
                 Send Message <Send className="ml-2 h-5 w-5" />
               </Button>
             </form>

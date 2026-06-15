@@ -62,7 +62,7 @@ export default function IndustriesPage() {
                 Let&apos;s discuss your specific needs and craft a solution tailored to your sector.
               </p>
               <Link href="/contact">
-                <Button className="bg-brand hover:bg-brand-dark text-primary-blue font-bold rounded-full h-14 px-10 shadow-xl active:scale-95 transition-all">
+                <Button className="bg-brand hover:bg-brand-dark text-white font-bold rounded-full h-14 px-10 shadow-xl active:scale-95 transition-all">
                   Schedule a Discussion <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>

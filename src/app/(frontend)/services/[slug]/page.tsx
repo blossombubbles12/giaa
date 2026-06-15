@@ -228,8 +228,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               Schedule a consultation with our experts to discuss how our {service.title} services can drive value for your organization.
             </p>
             <div className="pt-4">
-              <Link href="/contact">
-                <Button className="bg-brand hover:bg-brand-dark text-primary-blue font-bold rounded-full h-14 px-10 shadow-xl active:scale-95 transition-all text-sm">
+                <Link href="/contact">
+                <Button className="bg-brand hover:bg-brand-dark text-white font-bold rounded-full h-14 px-10 shadow-xl active:scale-95 transition-all text-sm">
                   Talk to an Expert <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
