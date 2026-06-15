@@ -1,0 +1,14 @@
+import { db } from '../db/index.js';
+import { notifications } from '../db/schema.js';
+
+async function checkNotifications() {
+    try {
+        console.log('--- Checking Notifications Table ---');
+        const count = await db.select().from(notifications).limit(1);
+        console.log('Successfully queried notifications table.');
+    } catch (error) {
+        console.error('DATABASE ERROR:', error);
+    }
+}
+
+checkNotifications();
