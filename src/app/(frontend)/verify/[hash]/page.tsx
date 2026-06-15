@@ -24,7 +24,7 @@ export default async function VerifyPage({ params }: { params: Promise<{ hash: s
                 <div className="absolute inset-0 opacity-10 pointer-events-none">
                     <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2" />
                 </div>
-                <div className="container mx-auto px-4 md:px-6 relative z-10 text-center space-y-8">
+                <div className="container relative z-10 text-center space-y-8">
                     <h4 className="text-brand font-black uppercase tracking-[0.4em] text-xs">Credential Verification</h4>
                     <h1 className="text-6xl md:text-9xl font-black text-white leading-[0.8] tracking-tighter uppercase">
                         Validate <span className="text-brand">Identity</span>
@@ -33,7 +33,7 @@ export default async function VerifyPage({ params }: { params: Promise<{ hash: s
             </section>
 
             {/* Result Section */}
-            <section className="container mx-auto px-4 md:px-6 -mt-24 relative z-20">
+            <section className="container -mt-24 relative z-20">
                 <div className="max-w-4xl mx-auto">
                     {certificate ? (
                         <div className="bg-white dark:bg-slate-950 p-10 md:p-20 rounded-[4rem] shadow-2xl border border-emerald-500/20 dark:border-emerald-500/10 space-y-12 relative overflow-hidden group">

@@ -18,7 +18,7 @@ export default function AssociationsPage() {
                 breadcrumbs={[{ name: 'Associations' }]}
             />
 
-            <div className="container mx-auto px-4 md:px-10 -mt-10 relative z-20">
+            <div className="container -mt-10 relative z-20">
                 <div className="max-w-7xl mx-auto space-y-16 pt-16">
                     {/* Features Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -27,7 +27,7 @@ export default function OurPartnersPage() {
                 breadcrumbs={[{ name: 'Our Partners' }]}
             />
 
-            <div className="container mx-auto px-4 md:px-10 -mt-10 relative z-20">
+            <div className="container -mt-10 relative z-20">
                 <div className="max-w-7xl mx-auto space-y-16 pt-16">
                     {/* Partner Grid */}
                     <div className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-[3rem] p-10 md:p-16 shadow-xl shadow-brand/5 relative overflow-hidden">

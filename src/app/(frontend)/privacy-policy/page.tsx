@@ -17,7 +17,7 @@ export default async function PrivacyPolicyPage() {
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-navy py-16 md:py-24">
-            <div className="container mx-auto px-4 md:px-6 max-w-4xl">
+            <div className="container max-w-4xl">
 
                 <Link href="/" className="inline-flex items-center gap-2 text-slate-500 hover:text-brand transition-colors mb-8 group font-medium">
                     <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />

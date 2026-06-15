@@ -72,7 +72,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     return (
         <div className="bg-white dark:bg-slate-950 pb-32">
             {/* Post Hero Section - Contained & Professional with Image */}
-            <div className="container mx-auto px-4 md:px-6 pt-10">
+            <div className="container pt-10">
                 <section className="relative py-14 md:py-20 rounded-[3rem] overflow-hidden group shadow-2xl border border-slate-200/50 dark:border-slate-800/50">
                     {/* Background Image with Overlay */}
                     <div className="absolute inset-0 z-0">
@@ -132,7 +132,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
 
             {/* Post Content Layout - Shifted away from overlap */}
-            <section className="container mx-auto px-4 md:px-6 pt-16 relative z-20">
+            <section className="container pt-16 relative z-20">
                 <div className="flex flex-col lg:flex-row gap-12 max-w-7xl mx-auto">
                     {/* Main Reading Column */}
                     <div className="flex-1 max-w-4xl lg:max-w-3xl">
@@ -220,7 +220,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
             {/* Related Posts Bottom Section */}
             {relatedPosts.length > 0 && (
-                <section className="container mx-auto px-4 md:px-6 mt-32">
+                <section className="container mt-32">
                     <div className="flex flex-col md:flex-row items-end justify-between gap-6 mb-12 border-b border-slate-100 dark:border-slate-800 pb-10">
                         <div className="space-y-3">
                             <span className="text-brand font-black uppercase tracking-[.3em] text-[10px]">Deep Dive</span>

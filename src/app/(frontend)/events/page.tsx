@@ -23,7 +23,7 @@ export default async function EventsPage() {
             />
 
             {/* Events Grid */}
-            <section className="container mx-auto px-4 md:px-6 py-12 relative z-20">
+            <section className="container py-12 relative z-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {upcomingEvents.length > 0 ? upcomingEvents.map((event, i) => (
                         <div key={event.id} className="group bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] overflow-hidden hover:border-brand transition-all duration-500 shadow-sm flex flex-col h-full">

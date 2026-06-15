@@ -243,7 +243,7 @@ export function CoursesClient({ initialCourses, categories, tags, certificationT
 
             {/* ═══ Toolbar ═══ */}
             <div className="border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-navy sticky top-16 z-30 shadow-sm">
-                <div className="container mx-auto px-4 md:px-6 flex flex-row flex-nowrap items-center justify-between py-3 gap-2 sm:gap-4 overflow-hidden">
+                <div className="container flex flex-row flex-nowrap items-center justify-between py-3 gap-2 sm:gap-4 overflow-hidden">
                     <div className="flex items-center gap-3">
                         {/* Mobile filter toggle */}
                         <Button variant="outline" onClick={() => setShowMobileFilters(!showMobileFilters)} className="lg:hidden rounded-lg gap-2 text-xs font-semibold border-slate-200 dark:border-slate-700">
@@ -291,7 +291,7 @@ export function CoursesClient({ initialCourses, categories, tags, certificationT
             </div>
 
             {/* ═══ Content Area ═══ */}
-            <div className="container mx-auto px-4 md:px-6 py-8">
+            <div className="container py-8">
                 <div className="flex gap-8">
 
                     {/* ——— Desktop Sidebar ——— */}

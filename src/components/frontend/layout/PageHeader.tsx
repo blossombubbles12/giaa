@@ -30,7 +30,7 @@ export function PageHeader({ title, description, breadcrumbs, className }: PageH
                     <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/95 to-slate-950/60" />
                 </div>
 
-                <div className="container mx-auto px-8 md:px-16 relative z-10">
+                <div className="px-8 md:px-14 relative z-10">
                     <div className="max-w-4xl space-y-4">
                         {/* Breadcrumbs */}
                         <nav className="flex items-center flex-wrap gap-2 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">

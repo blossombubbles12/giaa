@@ -13,14 +13,14 @@ import { ThemeToggle } from './ThemeToggle';
 import { cn } from '@/lib/utils';
 
 const services = [
-  { name: 'ISO Implementation & Certification Advisory', href: '/services#iso', icon: Shield },
-  { name: 'Audit, Assurance & Financial Control Services', href: '/services#audit', icon: FileCheck },
-  { name: 'Tax Advisory & Compliance Services', href: '/services#tax', icon: Scale },
-  { name: 'Risk Management & Compliance Advisory', href: '/services#risk', icon: BarChart3 },
-  { name: 'Business Strategy & Transformation Consulting', href: '/services#strategy', icon: LineChart },
-  { name: 'ESG & Sustainability Advisory', href: '/services#esg', icon: Globe },
-  { name: 'HR & Organizational Development', href: '/services#hr', icon: Users },
-  { name: 'IT & Cybersecurity Advisory', href: '/services#it', icon: Lock },
+  { name: 'ISO Implementation & Certification Advisory', href: '/services/iso', icon: Shield },
+  { name: 'Audit, Assurance & Financial Control Services', href: '/services/audit', icon: FileCheck },
+  { name: 'Tax Advisory & Compliance Services', href: '/services/tax', icon: Scale },
+  { name: 'Risk Management & Compliance Advisory', href: '/services/risk', icon: BarChart3 },
+  { name: 'Business Strategy & Transformation Consulting', href: '/services/strategy', icon: LineChart },
+  { name: 'ESG & Sustainability Advisory', href: '/services/esg', icon: Globe },
+  { name: 'HR & Organizational Development', href: '/services/hr', icon: Users },
+  { name: 'IT & Cybersecurity Advisory', href: '/services/it', icon: Lock },
 ];
 
 const navLinks = [
@@ -62,13 +62,15 @@ export function Navbar({ categories = [] }: NavbarProps) {
   return (
     <>
       {/* Top Bar (Hidden on Mobile) */}
-      <div className="hidden lg:flex items-center justify-between bg-primary-blue dark:bg-slate-950 text-slate-300 text-xs font-semibold px-5 md:px-8 py-2 relative z-50">
-        <div className="flex items-center gap-6">
-          <span className="flex items-center gap-2"><Phone size={12} className="text-brand" /> +234 XXX XXX XXXX</span>
-          <span className="flex items-center gap-2"><Mail size={12} className="text-brand" /> info@giaadvisory.com</span>
-        </div>
-        <div className="flex items-center gap-6">
-          <span className="text-brand font-bold text-[10px] uppercase tracking-widest">Governance. Compliance. Performance.</span>
+      <div className="hidden lg:block bg-primary-blue dark:bg-slate-950 relative z-50">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 flex items-center justify-between text-slate-300 text-xs font-semibold py-2">
+          <div className="flex items-center gap-6">
+            <span className="flex items-center gap-2"><Phone size={12} className="text-brand" /> +234 XXX XXX XXXX</span>
+            <span className="flex items-center gap-2"><Mail size={12} className="text-brand" /> info@giaadvisory.com</span>
+          </div>
+          <div className="flex items-center gap-6">
+            <span className="text-brand font-bold text-[10px] uppercase tracking-widest">Governance. Compliance. Performance.</span>
+          </div>
         </div>
       </div>
 
@@ -80,16 +82,16 @@ export function Navbar({ categories = [] }: NavbarProps) {
             : 'bg-transparent py-3'
         )}
       >
-        <div className="flex items-center justify-between px-5 md:px-8">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 flex items-center justify-between">
           {/* Logo */}
           <Link href="/">
             <Image
               src="/gialogo.png"
               alt="GIA Advisory Consulting Services"
-              width={180}
-              height={56}
+              width={100}
+              height={28}
               style={{ height: 'auto', width: 'auto' }}
-              className="h-14 w-auto hover:opacity-90 transition-opacity"
+              className="h-6 md:h-7 w-auto hover:opacity-90 transition-opacity"
               priority
             />
           </Link>

@@ -93,7 +93,7 @@ export default function AboutPage() {
               What We <span className="text-brand">Deliver</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { name: 'Financial Governance & Audit Assurance', icon: Shield },
               { name: 'Tax Planning & Compliance', icon: Award },
@@ -153,27 +153,28 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-white dark:bg-slate-950">
-        <div className="container">
-          <div className="bg-primary-blue rounded-[4rem] p-12 md:p-24 text-center space-y-8 relative overflow-hidden shadow-2xl">
-            <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, #a13938 0%, transparent 70%)' }} />
-            <div className="max-w-3xl mx-auto space-y-8 relative z-10">
-              <h2 className="text-3xl md:text-5xl font-black text-white leading-tight tracking-tighter">
-                Ready to Work With <span className="text-brand">Us?</span>
-              </h2>
-              <p className="text-white/80 text-lg font-medium max-w-xl mx-auto">
-                Let&apos;s discuss how GIA Advisory can help your organization achieve excellence in governance, compliance, and performance.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4 pt-4">
-                <Link href="/contact">
-                  <Button className="bg-brand hover:bg-brand-dark text-primary-blue font-bold rounded-full h-14 px-10 shadow-xl active:scale-95 transition-all">
-                    Contact Us <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                <a href="mailto:info@giaadvisory.com" className="inline-flex items-center gap-2 border-2 border-white/20 text-white rounded-full h-14 px-10 font-bold text-sm hover:bg-white/10 transition-all">
-                  info@giaadvisory.com
-                </a>
-              </div>
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img src="/images/bottombanner.jpg" alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-primary-blue/88" />
+        </div>
+        <div className="container relative z-10 text-center">
+          <div className="max-w-3xl mx-auto space-y-8">
+            <h2 className="text-3xl md:text-5xl font-black text-white leading-tight tracking-tighter">
+              Ready to Work With <span className="text-brand">Us?</span>
+            </h2>
+            <p className="text-slate-300 text-lg font-medium max-w-xl mx-auto">
+              Let&apos;s discuss how GIA Advisory can help your organization achieve excellence in governance, compliance, and performance.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 pt-4">
+              <Link href="/contact">
+                <Button className="bg-brand hover:bg-brand-dark text-white font-bold rounded-full h-14 px-10 shadow-xl active:scale-95 transition-all">
+                  Contact Us <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <a href="mailto:info@giaadvisory.com" className="inline-flex items-center gap-2 border-2 border-white/20 text-white rounded-full h-14 px-10 font-bold text-sm hover:bg-white/10 transition-all">
+                info@giaadvisory.com
+              </a>
             </div>
           </div>
         </div>

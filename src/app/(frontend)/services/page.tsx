@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { PageHeader } from '@/components/frontend/layout/PageHeader';
+import { ServiceCard } from '@/components/frontend/home/ServiceCard';
 import Image from 'next/image';
 
 const serviceCategories = [
@@ -42,7 +43,7 @@ const serviceCategories = [
     icon: Scale,
     title: 'Tax Advisory & Compliance Services',
     desc: 'Navigate complex tax regulations with strategic planning and full compliance support.',
-    image: 'https://images.unsplash.com/photo-1586486855514-8c633cc15394?auto=format&fit=crop&q=80&w=900',
+    image: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&q=80&w=900',
     details: [
       { sub: 'Tax Planning', items: ['Corporate tax strategy', 'Tax-efficient business structuring', 'Cross-border tax planning', 'Estate tax planning'] },
       { sub: 'Compliance Support', items: ['Tax return preparation', 'Withholding tax management', 'Transfer pricing documentation'] },
@@ -145,46 +146,9 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {serviceCategories.map((cat, i) => (
-              <motion.div
-                key={cat.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-              >
-                <Link href={`/services/${cat.id}`} className="group block h-full">
-                  <div className="h-full rounded-3xl overflow-hidden border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-brand/40 hover:shadow-2xl transition-all duration-500 flex flex-col">
-                    {/* Featured Image */}
-                    <div className="relative h-44 overflow-hidden">
-                      <Image
-                        src={cat.image}
-                        alt={cat.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent" />
-                      <div className="absolute bottom-3 left-3 w-10 h-10 rounded-xl bg-brand/90 flex items-center justify-center text-white">
-                        <cat.icon size={20} />
-                      </div>
-                    </div>
-                    {/* Card Body */}
-                    <div className="p-6 flex flex-col flex-grow">
-                      <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight mb-2 group-hover:text-brand transition-colors">
-                        {cat.title}
-                      </h3>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed flex-grow">
-                        {cat.desc}
-                      </p>
-                      <span className="mt-4 text-xs font-black text-brand uppercase tracking-widest flex items-center">
-                        Explore <ArrowRight className="ml-1 h-3 w-3 group-hover:translate-x-1 transition-transform" />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
+              <ServiceCard key={cat.id} service={cat} index={i} />
             ))}
           </div>
         </div>
@@ -193,6 +157,7 @@ export default function ServicesPage() {
       {/* ── Tabbed Deep-Dive ── */}
       <section className="py-20 md:py-28">
         <div className="container">
+          <div className="max-w-4xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tighter">
               Explore Each <span className="text-brand">Service Area</span>
@@ -285,17 +250,20 @@ export default function ServicesPage() {
               )}
             </div>
           </div>
+          </div>{/* end max-w-4xl */}
         </div>
       </section>
-
-      {/* CTA */}
-      <section className="py-24 bg-slate-50 dark:bg-slate-900/30 border-y border-slate-100 dark:border-slate-800">
-        <div className="container text-center">
+      <section className="py-24 relative border-y border-slate-100 dark:border-slate-800 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img src="/images/bottombanner.jpg" alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-primary-blue/85" />
+        </div>
+        <div className="container text-center relative z-10">
           <div className="max-w-3xl mx-auto space-y-8">
-            <h2 className="text-3xl md:text-5xl font-black text-primary-blue dark:text-white leading-tight tracking-tighter">
+            <h2 className="text-3xl md:text-5xl font-black text-white leading-tight tracking-tighter">
               Need Help Choosing the Right <span className="text-brand">Service?</span>
             </h2>
-            <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">
+            <p className="text-lg text-slate-300 font-medium">
               Our team of experts will guide you through the right compliance and advisory solutions for your organization.
             </p>
             <Link href="/contact">

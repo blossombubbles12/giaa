@@ -31,7 +31,7 @@ export default async function ResourcesPage() {
                 breadcrumbs={[{ name: 'Resources' }]}
             />
 
-            <div className="container mx-auto px-4 md:px-10 py-12 relative z-20">
+            <div className="container py-12 relative z-20">
                 <div className="max-w-7xl mx-auto space-y-16 pt-16">
 
 

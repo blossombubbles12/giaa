@@ -13,7 +13,7 @@ export default function AccreditationsPage() {
 
             {/* Accreditations List */}
             <section className="py-24 relative z-20">
-                <div className="container mx-auto px-4 md:px-6">
+                <div className="container">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {[
                             { title: 'ISO 9001:2015', desc: 'Certified for Quality Management Systems, ensuring our services meet statutory and regulatory requirements.', icon: ShieldCheck, color: 'text-brand' },

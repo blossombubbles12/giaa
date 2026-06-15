@@ -52,7 +52,7 @@ export default function SpacesPage() {
                 breadcrumbs={[{ name: 'Workspace Rent' }]}
             />
 
-            <div className="container mx-auto px-4 md:px-10 -mt-10 relative z-20 flex justify-center">
+            <div className="container -mt-10 relative z-20 flex justify-center">
                 <Button
                     onClick={() => handleInquiry({ id: 'general', title: 'Facility Tour' })}
                     size="lg"
@@ -64,7 +64,7 @@ export default function SpacesPage() {
 
             {/* Amenities Section */}
             <section className="py-20 bg-slate-50 dark:bg-slate-900/50">
-                <div className="container mx-auto px-4 md:px-6">
+                <div className="container">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                         {[
                             { icon: Wifi, text: 'High-Speed Internet' },
@@ -83,7 +83,7 @@ export default function SpacesPage() {
 
             {/* Spaces List */}
             <section className="py-24">
-                <div className="container mx-auto px-4 md:px-6">
+                <div className="container">
                     <div className="space-y-16">
                         {spaces.map((space, i) => (
                             <div key={i} className={`flex flex-col ${i % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12 bg-white dark:bg-slate-950 p-6 md:p-8 rounded-[3rem] border border-slate-100 dark:border-slate-800 shadow-xl group`}>

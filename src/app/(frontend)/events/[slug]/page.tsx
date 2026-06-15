@@ -40,7 +40,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
                 ]}
             />
 
-            <section className="container mx-auto px-4 md:px-6 py-12 relative z-20">
+            <section className="container py-12 relative z-20">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     {/* Main Content */}
                     <div className="lg:col-span-2 space-y-12">

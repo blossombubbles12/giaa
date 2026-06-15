@@ -27,7 +27,7 @@ export default async function CalendarPage() {
                 breadcrumbs={[{ name: 'Training Calendar' }]}
             />
 
-            <section className="container mx-auto px-4 md:px-6 py-12 space-y-12">
+            <section className="container py-12 space-y-12">
                 
                 {/* Filterable List */}
                 <CalendarClient initialSchedules={allSchedules} />

@@ -51,7 +51,7 @@ export default function FAQPage() {
                 breadcrumbs={[{ name: 'FAQ' }]}
             />
 
-            <div className="container mx-auto px-4 md:px-10 -mt-10 relative z-20">
+            <div className="container -mt-10 relative z-20">
                 <div className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 md:p-12 shadow-sm space-y-10">
 
 

@@ -46,7 +46,7 @@ export default async function ResourceDetailsPage({ params }: { params: Promise<
                 ]}
             />
 
-            <div className="container mx-auto px-4 md:px-10 -mt-10 relative z-20">
+            <div className="container -mt-10 relative z-20">
                 <div className="max-w-7xl mx-auto space-y-16 pt-16">
                     {/* Media Count Card */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">

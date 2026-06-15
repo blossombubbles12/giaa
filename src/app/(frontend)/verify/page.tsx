@@ -33,7 +33,7 @@ export default function VerifyLandingPage() {
             />
 
             {/* Verification Form Section */}
-            <section className="container mx-auto px-4 md:px-6 -mt-24 relative z-20 pb-32">
+            <section className="container -mt-24 relative z-20 pb-32">
                 <div className="max-w-3xl mx-auto">
                     <div className="bg-white dark:bg-slate-950 p-8 md:p-16 rounded-[4rem] shadow-2xl border border-slate-100 dark:border-slate-800 space-y-10 animate-in fade-in slide-in-from-bottom-16 duration-700 delay-300">
                         <div className="space-y-2 text-center md:text-left">

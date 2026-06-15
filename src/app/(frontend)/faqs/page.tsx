@@ -12,7 +12,7 @@ export default function FAQsPage() {
                 breadcrumbs={[{ name: 'FAQs' }]}
             />
 
-            <div className="container mx-auto px-4 md:px-10 -mt-10 relative z-20 flex justify-center">
+            <div className="container -mt-10 relative z-20 flex justify-center">
                 <div className="relative max-w-2xl w-full group">
                     <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-brand transition-colors" size={20} />
                     <Input
@@ -24,7 +24,7 @@ export default function FAQsPage() {
 
             {/* FAQs Accordion Replacement List */}
             <section className="py-24 relative z-20">
-                <div className="container mx-auto px-4 md:px-6 max-w-4xl">
+                <div className="container max-w-4xl">
                     <div className="space-y-6">
                         {[
                             { q: 'How do I register for a course?', a: 'You can register for any course directly from our Courses page. Click on the desired course, and follow the simple checkout process.' },

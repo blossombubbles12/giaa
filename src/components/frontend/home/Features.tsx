@@ -1,68 +1,55 @@
 'use client';
 
-import { useState } from 'react';
 import {
     Users2,
     TrendingUp,
     Settings2,
     ArrowRight,
     MessageCircle,
-    Plus,
-    Minus
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const services = [
     {
         id: 'hcd',
         eyebrow: 'For HR & L&D',
-        title: 'HUMAN CAPITAL',
-        headline: 'Your People Aren\'t the Problem.',
-        body: 'We show your people how the job should be done. Suddenly, your team members no longer need 24/7 monitoring. They know what to do and how to do it. We don\'t just train them. We change how they think and show up.',
+        title: 'Human Capital Development',
+        headline: "Your People Aren't the Problem.",
+        body: "We show your people how the job should be done. Suddenly, your team members no longer need 24/7 monitoring. We don't just train them — we change how they think and show up.",
         icon: Users2,
-        color: 'text-brand',
-        bg: 'bg-brand/10',
+        image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=900',
         href: '/courses'
     },
     {
         id: 'fs',
         eyebrow: 'For Finance',
-        title: 'FINANCIAL STRATEGY',
-        headline: 'Numbers Shouldn\'t Keep You Up.',
-        body: 'We train your people to understand money the way it should be understood. Now they can make practical financial decisions without you sweating out at 2 am, fearing the worst. Because when your whole team speaks the language of money, everything gets sharper.',
+        title: 'Financial Strategy',
+        headline: "Numbers Shouldn't Keep You Up.",
+        body: "We train your people to understand money the way it should be understood. When your whole team speaks the language of money, everything gets sharper.",
         icon: TrendingUp,
-        color: 'text-blue-500',
-        bg: 'bg-blue-500/10',
+        image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=900',
         href: '/courses'
     },
     {
         id: 'obi',
         eyebrow: 'For Operations',
-        title: 'BUSINESS IMPROVEMENT',
+        title: 'Business Improvement',
         headline: 'Systems That Run Without You.',
-        body: 'We sneak into the engine room of your business. The processes that break down. The workflows that create bottlenecks. The gaps that cost you time, money, and energy every single week. We fix them. And we equip your people to keep them fixed.',
+        body: 'We fix the processes that break down. The workflows that create bottlenecks. The gaps that cost you time, money, and energy every single week.',
         icon: Settings2,
-        color: 'text-emerald-500',
-        bg: 'bg-emerald-500/10',
-        href: '/courses'
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=900',
+        href: '/services/strategy'
     }
 ];
 
 export function FeatureSection() {
-    const [reveal, setReveal] = useState<Record<string, boolean>>({});
-
-    const toggleReveal = (id: string) => {
-        setReveal(prev => ({ ...prev, [id]: !prev[id] }));
-    };
-
     return (
         <section className="relative pt-10 pb-20 lg:pt-12 lg:pb-24 bg-white dark:bg-[#0F172A] overflow-hidden">
-            {/* Background Accent */}
             <div className="absolute top-0 right-0 w-1/3 h-full bg-brand/[0.03] transform skew-x-12 translate-x-20" />
-            
+
             <div className="container mx-auto px-4 md:px-10 relative z-10">
                 <div className="max-w-2xl mb-16">
                     <h4 className="text-brand font-black uppercase tracking-[0.3em] text-[10px] mb-4">Our Services</h4>
@@ -74,51 +61,49 @@ export function FeatureSection() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {services.map((s, i) => (
-                        <div 
-                            key={s.id} 
-                            className="group p-8 rounded-[2rem] bg-slate-50 dark:bg-[#1E293B]/50 border border-slate-200 dark:border-slate-800 hover:border-brand/40 dark:hover:border-brand/30 transition-all duration-500 flex flex-col h-full"
+                        <motion.div
+                            key={s.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.1 }}
                         >
-                            <div className={`w-14 h-14 ${s.bg} rounded-2xl flex items-center justify-center mb-6`}>
-                                <s.icon className={`h-6 w-6 ${s.color}`} />
-                            </div>
-                            
-                            <div className="space-y-4 flex-grow">
-                                <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{s.eyebrow}</span>
-                                <h3 className="text-base font-black text-slate-900 dark:text-white uppercase leading-tight tracking-wide">{s.title}</h3>
-                                <p className="text-sm font-bold text-slate-800 dark:text-slate-200 leading-snug">
-                                    {s.headline}
-                                </p>
-                                
-                                <div className="space-y-2">
-                                    <p className={cn(
-                                        "text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed transition-all duration-300",
-                                        !reveal[s.id] && "line-clamp-2"
-                                    )}>
-                                        {s.body}
-                                    </p>
-                                    <button 
-                                        onClick={() => toggleReveal(s.id)}
-                                        className="text-[10px] font-black uppercase tracking-widest text-brand inline-flex items-center gap-1 hover:text-slate-900 dark:hover:text-white transition-colors"
-                                    >
-                                        {!reveal[s.id] ? <><Plus size={10} /> Details</> : <><Minus size={10} /> Less</>}
-                                    </button>
+                            <Link href={s.href} className="group block h-full">
+                                <div className="h-full rounded-[2rem] overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#1E293B]/50 hover:border-brand/40 hover:shadow-2xl transition-all duration-500 flex flex-col">
+                                    <div className="relative h-52 overflow-hidden">
+                                        <Image
+                                            src={s.image}
+                                            alt={s.title}
+                                            fill
+                                            className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                            sizes="(max-width:1024px) 100vw, 33vw"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+                                        <div className="absolute bottom-4 left-4 flex items-center gap-3">
+                                            <div className="w-9 h-9 rounded-xl bg-brand/90 flex items-center justify-center text-white shrink-0">
+                                                <s.icon size={18} />
+                                            </div>
+                                            <span className="text-[10px] font-black text-brand/90 uppercase tracking-widest">{s.eyebrow}</span>
+                                        </div>
+                                    </div>
+                                    <div className="p-7 flex flex-col flex-grow space-y-3">
+                                        <h3 className="text-base font-black text-slate-900 dark:text-white uppercase tracking-wide group-hover:text-brand transition-colors">{s.title}</h3>
+                                        <p className="text-sm font-bold text-slate-700 dark:text-slate-300">{s.headline}</p>
+                                        <p className="text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed flex-grow">{s.body}</p>
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-brand flex items-center gap-1 pt-2 group-hover:gap-2 transition-all">
+                                            Browse Curriculum <ArrowRight className="h-3 w-3" />
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <Link href={s.href} className="mt-8">
-                                <Button variant="ghost" className="p-0 h-auto hover:bg-transparent text-slate-400 hover:text-brand font-black uppercase tracking-widest text-[10px] flex items-center gap-2 group/btn transition-colors">
-                                    Browse Curriculum 
-                                    <ArrowRight className="h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
-                                </Button>
                             </Link>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 
                 <div className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
                     <p className="text-base font-bold text-slate-700 dark:text-slate-300">
                         Not sure where to start? <br className="hidden md:block" />
-                        <span className="text-slate-500 font-medium">Let's talk about your organization's needs.</span>
+                        <span className="text-slate-500 font-medium">Let&apos;s talk about your organization&apos;s needs.</span>
                     </p>
                     <Link href="/contact">
                         <Button size="sm" className="bg-brand text-white rounded-xl h-12 px-8 font-black uppercase tracking-widest transition-all flex items-center gap-2">

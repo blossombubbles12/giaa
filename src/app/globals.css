@@ -138,16 +138,31 @@
   }
 
   body {
-    @apply bg-slate-50 dark:bg-slate-950 text-foreground;
-    background-image: radial-gradient(circle at 2px 2px, rgba(0,0,0,0.03) 1px, transparent 0);
-    background-size: 32px 32px;
+    @apply bg-white dark:bg-slate-950 text-foreground;
   }
 
+  /* Full-width grid content — cards, stats, service grids */
   .container {
-    @apply max-w-5xl mx-auto px-5 md:px-8;
+    @apply max-w-[1024px] mx-auto px-5 sm:px-8 md:px-10 lg:px-12;
   }
 
+  /* Wider breakout — hero backgrounds, decorative full-bleed bands */
   .container-wide {
-    @apply max-w-[1280px] mx-auto px-5 md:px-8;
+    @apply max-w-[1400px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16;
+  }
+
+  /* Text-heavy pages — blog posts, policy pages, service detail */
+  .container-narrow {
+    @apply max-w-[864px] mx-auto px-5 sm:px-8 md:px-12;
+  }
+
+  /* Inline prose — readable paragraph columns */
+  .container-prose {
+    @apply max-w-[672px] mx-auto px-5 sm:px-8;
+  }
+
+  /* Consistent section vertical rhythm */
+  .section-py {
+    @apply py-20 md:py-28 lg:py-32;
   }
 }

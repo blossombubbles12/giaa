@@ -17,7 +17,7 @@ export default function VideosGalleryPage() {
 
             {/* Videos Grid */}
             <section className="py-24">
-                <div className="container mx-auto px-4 md:px-6">
+                <div className="container">
                     <div className="flex items-center justify-between mb-12">
                         <h2 className="text-3xl font-black uppercase tracking-tighter text-slate-900 dark:text-white flex items-center gap-3">
                             <PlayCircle size={28} className="text-rose-500" /> Latest Videos
@@ -41,7 +41,7 @@ export default function VideosGalleryPage() {
 
             {/* Photo Gallery Grid */}
             <section className="py-24 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800">
-                <div className="container mx-auto px-4 md:px-6">
+                <div className="container">
                     <div className="flex items-center justify-between mb-12">
                         <h2 className="text-3xl font-black uppercase tracking-tighter text-slate-900 dark:text-white flex items-center gap-3">
                             <ImageIcon size={28} className="text-rose-500" /> Photo Gallery

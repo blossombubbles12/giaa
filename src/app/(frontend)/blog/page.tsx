@@ -42,7 +42,7 @@ export default async function BlogPage() {
 
             {/* Category Filter Section */}
             <div className="bg-slate-50 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-800 py-6">
-                <div className="container mx-auto px-4 md:px-6 flex flex-wrap items-center gap-3">
+                <div className="container flex flex-wrap items-center gap-3">
                     <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 mr-2">Topics:</span>
                     <Link href="/blog">
                         <span className="px-5 py-2.5 bg-brand text-white rounded-xl text-[9px] font-black uppercase tracking-widest shadow-lg shadow-brand/20 cursor-pointer hover:bg-slate-900 transition-all">All Posts</span>
@@ -58,7 +58,7 @@ export default async function BlogPage() {
             </div>
 
             {/* Posts Grid - Now more compact and separate */}
-            <section className="container mx-auto px-4 md:px-6 pt-16 relative z-20">
+            <section className="container pt-16 relative z-20">
                 <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                     {allPosts.length > 0 ? allPosts.map((post) => (
                         <Link

@@ -96,7 +96,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
         <div className="bg-white dark:bg-navy">
 
             {/* ═══ Contained Course Hero ═══ */}
-            <div className="container mx-auto px-4 md:px-6 pt-10">
+            <div className="container pt-10">
                 <section className="relative py-12 md:py-16 rounded-[2.5rem] overflow-hidden group shadow-2xl border border-slate-200/50 dark:border-slate-800/50 bg-slate-900 text-white">
                     {/* Background Overlay */}
                     <div className="absolute inset-0 z-0 opacity-20">
@@ -187,7 +187,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
             </div>
 
             {/* ═══ Main Content + Sidebar ═══ */}
-            <div className="container mx-auto px-4 md:px-6 relative">
+            <div className="container relative">
                 <div className="flex flex-col lg:flex-row gap-12 py-12">
 
                     {/* ——— Left Column: Course Content ——— */}
@@ -470,7 +470,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
 
             {/* ═══ Lead Capture Section ═══ */}
             <section className="py-12 md:py-24 border-t border-slate-100 dark:border-slate-800">
-                <div className="container mx-auto px-4 md:px-6">
+                <div className="container">
                     <div className="max-w-5xl mx-auto bg-slate-50 dark:bg-slate-900/50 rounded-[2rem] md:rounded-[4rem] p-6 md:p-16 border border-slate-100 dark:border-slate-800 shadow-xl">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
                             <div className="space-y-4 md:space-y-6 text-center lg:text-left">
@@ -499,7 +499,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
             {/* ═══ Related Courses ═══ */}
             {relatedCourses.length > 0 && (
                 <section className="py-24 bg-slate-50 dark:bg-navy border-t border-slate-100 dark:border-slate-800">
-                    <div className="container mx-auto px-4 md:px-6">
+                    <div className="container">
                         <div className="flex flex-col md:flex-row items-end justify-between gap-6 mb-12 text-center md:text-left">
                             <div className="space-y-3">
                                 <h4 className="text-brand font-black uppercase tracking-[.3em] text-[10px]">Upgrade Your Skills</h4>
@@ -578,7 +578,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
 
             {/* ═══ Bottom CTA Banner ═══ */}
             <section className="bg-slate-900 border-t border-slate-800">
-                <div className="container mx-auto px-4 md:px-6 py-16">
+                <div className="container py-16">
                     <div className="max-w-3xl mx-auto text-center space-y-6">
                         <h2 className="text-3xl font-extrabold text-white tracking-tight">
                             Ready to advance your career?

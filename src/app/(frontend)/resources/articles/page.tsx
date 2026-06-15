@@ -18,7 +18,7 @@ export default function ArticlesPage() {
 
             {/* Articles Grid */}
             <section className="py-24">
-                <div className="container mx-auto px-4 md:px-6">
+                <div className="container">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {[1, 2, 3, 4, 5, 6].map((i) => (
                             <Link key={i} href="#" className="group block bg-white dark:bg-slate-950 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 overflow-hidden hover:shadow-2xl hover:border-blue-500/30 transition-all duration-500">
