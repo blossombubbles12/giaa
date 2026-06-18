@@ -18,6 +18,7 @@ type Certificate = {
     id: string;
     pdfUrl: string;
     verifyHash: string;
+    shortCode: string;
     issuedAt: string;
     recipientName: string | null;
     recipientEmail: string | null;
@@ -35,6 +36,7 @@ type BulkResult = {
     email: string;
     status: 'success' | 'failed';
     verifyHash?: string;
+    shortCode?: string;
     pdfUrl?: string;
     error?: string;
 };
@@ -355,7 +357,17 @@ export default function AdminCertificatesPage() {
                                                                 }
                                                             </td>
                                                             <td className="px-4 py-2.5">
-                                                                {r.verifyHash && (
+                                                                {r.shortCode ? (
+                                                                    <div className="flex items-center gap-1">
+                                                                        <span className="font-bold text-brand tracking-widest text-xs select-all">
+                                                                            {r.shortCode.slice(0, 3)}-{r.shortCode.slice(3)}
+                                                                        </span>
+                                                                        <button onClick={() => { navigator.clipboard.writeText(`${r.shortCode!.slice(0, 3)}-${r.shortCode!.slice(3)}`); toast.success('Copied'); }}
+                                                                            className="text-slate-600 hover:text-white transition-colors">
+                                                                            <Copy size={12} />
+                                                                        </button>
+                                                                    </div>
+                                                                ) : r.verifyHash ? (
                                                                     <div className="flex items-center gap-1">
                                                                         <code className="text-[8px] text-slate-600 font-mono">{r.verifyHash.slice(0, 12)}...</code>
                                                                         <button onClick={() => { navigator.clipboard.writeText(r.verifyHash!); toast.success('Copied'); }}
@@ -363,7 +375,7 @@ export default function AdminCertificatesPage() {
                                                                             <Copy size={12} />
                                                                         </button>
                                                                     </div>
-                                                                )}
+                                                                ) : null}
                                                             </td>
                                                             <td className="px-4 py-2.5">
                                                                 {r.pdfUrl && (
@@ -507,11 +519,11 @@ export default function AdminCertificatesPage() {
                                             </div>
                                         </td>
                                         <td className="px-6 py-6">
-                                            <div className="flex flex-col">
-                                                <code className="text-[9px] text-slate-600 bg-slate-950 px-2 py-1 rounded-lg border border-slate-800 w-fit font-mono">
-                                                    {cert.verifyHash.slice(0, 12)}...
-                                                </code>
-                                                <span className="text-[10px] font-bold text-slate-700 uppercase mt-1">
+                                            <div className="flex flex-col gap-1">
+                                                <span className="text-base font-black tracking-[0.25em] text-brand select-all">
+                                                    {cert.shortCode.slice(0, 3)}-{cert.shortCode.slice(3)}
+                                                </span>
+                                                <span className="text-[10px] font-bold text-slate-700 uppercase mt-0.5">
                                                     {new Date(cert.issuedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
                                                 </span>
                                             </div>

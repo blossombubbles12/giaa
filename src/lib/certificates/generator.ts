@@ -12,11 +12,13 @@ export async function generateCertificatePDF({
     courseTitle,
     date,
     verificationUrl,
+    shortCode,
 }: {
     studentName: string;
     courseTitle: string;
     date: string;
     verificationUrl: string;
+    shortCode?: string;
 }) {
     // 1. Create a new PDF document
     const pdfDoc = await PDFDocument.create();
@@ -107,6 +109,18 @@ export async function generateCertificatePDF({
         color: rgb(0.5, 0.5, 0.5),
     });
 
+    // Short Code
+    if (shortCode) {
+        const formatted = `${shortCode.slice(0, 3)}-${shortCode.slice(3)}`;
+        page.drawText(`Verification Code: ${formatted}`, {
+            x: width - 280,
+            y: 100,
+            size: 12,
+            font: fontBold,
+            color: rgb(0.1, 0.2, 0.4),
+        });
+    }
+
     // Verification Info
     page.drawText(`Verify at: ${verificationUrl}`, {
         x: 80,
@@ -130,4 +144,24 @@ export function generateVerificationHash(identifier: string, courseId: string) {
     return crypto.createHash('sha256')
         .update(`${identifier}-${courseId}-${Date.now()}-${secret}`)
         .digest('hex');
+}
+
+/**
+ * Generate a short, human-friendly verification code.
+ * Format: 6 uppercase alphanumeric chars (excludes ambiguous O/0/I/1/L).
+ * Displayed as XXX-XXX for readability.
+ */
+export function generateShortCode(): string {
+    const chars = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+    let code = '';
+    for (let i = 0; i < 6; i++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return code;
+}
+
+/** Format a short code with a dash for readability: ABC-DEF */
+export function formatShortCode(code: string): string {
+    if (code.length <= 3) return code;
+    return `${code.slice(0, 3)}-${code.slice(3)}`;
 }

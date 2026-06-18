@@ -53,14 +53,14 @@ export default function VerifyLandingPage() {
                 <Search size={28} />
               </div>
               <h2 className="text-xl font-bold text-primary-blue dark:text-white">Enter Verification Code</h2>
-              <p className="text-sm text-slate-500">Paste the hash from your certificate document below</p>
+              <p className="text-sm text-slate-500">Enter the code from your certificate (e.g. ABC-DEF or full hash)</p>
             </div>
 
             <form onSubmit={handleVerify} className="space-y-4">
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="e.g. a3f8b2c1d4e5..."
+                  placeholder="e.g. ABC-DEF or paste full hash"
                   value={hash}
                   onChange={(e) => setHash(e.target.value)}
                   className="w-full h-14 pl-5 pr-36 rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm font-medium focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition-all"
@@ -101,7 +101,7 @@ export default function VerifyLandingPage() {
             <h3 className="text-sm font-bold text-primary-blue dark:text-white mb-8">How It Works</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
-                { step: '01', icon: QrCode, title: 'Locate Code', desc: 'Find the unique verification hash on your certificate document.' },
+                { step: '01', icon: QrCode, title: 'Locate Code', desc: 'Find your unique verification code (e.g. ABC-DEF) on the certificate.' },
                 { step: '02', icon: Search, title: 'Enter Hash', desc: 'Type or paste the code into the field above and click Verify.' },
                 { step: '03', icon: UserCheck, title: 'Instant Result', desc: 'Our system instantly confirms the credential\'s authenticity.' },
               ].map((item, i) => (

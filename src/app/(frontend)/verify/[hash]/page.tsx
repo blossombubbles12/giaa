@@ -1,15 +1,16 @@
 import { db } from '@/db';
 import { certificates } from '@/db/schema';
-import { eq } from 'drizzle-orm';
-import { ShieldCheck, XCircle, CheckCircle2, User, BookOpen, Calendar, Download, ArrowLeft, Share2, Lock } from 'lucide-react';
+import { eq, or } from 'drizzle-orm';
+import { ShieldCheck, XCircle, CheckCircle2, User, BookOpen, Calendar, Download, ArrowLeft, Share2, Lock, Hash } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export default async function VerifyPage({ params }: { params: Promise<{ hash: string }> }) {
   const { hash } = await params;
+  const cleanHash = hash.replace(/-/g, ''); // Strip dashes for short code lookup
 
   const certificate = await db.query.certificates.findFirst({
-    where: eq(certificates.verifyHash, hash),
+    where: or(eq(certificates.verifyHash, hash), eq(certificates.shortCode, cleanHash)),
     with: { user: true, course: true },
   });
 
@@ -82,12 +83,12 @@ export default async function VerifyPage({ params }: { params: Promise<{ hash: s
                         </div>
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Verification Hash</p>
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Verification Code</p>
                         <div className="flex items-center gap-3">
-                          <Lock size={16} className="text-amber-500 shrink-0" />
-                          <code className="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 select-all truncate">
-                            {certificate.verifyHash}
-                          </code>
+                          <Hash size={16} className="text-amber-500 shrink-0" />
+                          <span className="text-2xl font-black tracking-[0.3em] text-primary-blue dark:text-white select-all">
+                            {certificate.shortCode.slice(0, 3)}-{certificate.shortCode.slice(3)}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -104,7 +105,7 @@ export default async function VerifyPage({ params }: { params: Promise<{ hash: s
                   <Button
                     variant="outline"
                     className="rounded-xl h-12 px-6 font-bold text-xs gap-2 border-slate-200 dark:border-slate-700 active:scale-95 transition-all"
-                    onClick={() => { navigator.clipboard?.writeText(`${window.location.origin}/verify/${certificate.verifyHash}`); }}
+                    onClick={() => { navigator.clipboard?.writeText(`${window.location.origin}/verify/${certificate.shortCode.slice(0, 3)}-${certificate.shortCode.slice(3)}`); }}
                   >
                     <Share2 size={16} /> Share Proof
                   </Button>

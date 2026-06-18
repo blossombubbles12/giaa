@@ -144,6 +144,7 @@ async function main() {
       "recipient_name" varchar(255),
       "recipient_email" varchar(255),
       "course_id" varchar(255) NOT NULL,
+      "short_code" varchar(20) NOT NULL,
       "pdf_url" text NOT NULL,
       "verify_hash" varchar(255) NOT NULL,
       "issued_at" timestamp DEFAULT now() NOT NULL,
@@ -331,6 +332,7 @@ async function main() {
   await exec(`ALTER TABLE "certificate" ADD COLUMN IF NOT EXISTS "recipient_name" varchar(255)`, `ADD COLUMN certificate.recipient_name`);
   await exec(`ALTER TABLE "certificate" ADD COLUMN IF NOT EXISTS "recipient_email" varchar(255)`, `ADD COLUMN certificate.recipient_email`);
   await exec(`ALTER TABLE "certificate" ALTER COLUMN "user_id" DROP NOT NULL`, 'ALTER certificate.user_id DROP NOT NULL');
+  await exec(`ALTER TABLE "certificate" ADD COLUMN IF NOT EXISTS "short_code" varchar(20)`, `ADD COLUMN certificate.short_code`);
 
   await exec(`ALTER TABLE "notification" DROP CONSTRAINT IF EXISTS "notification_user_id_fk"`, 'DROP FK notification->user (1)');
   await exec(`ALTER TABLE "notification" DROP CONSTRAINT IF EXISTS "notification_user_id_user_id_fk"`, 'DROP FK notification->user (2)');

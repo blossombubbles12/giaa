@@ -151,6 +151,7 @@ export const certificates = pgTable("certificate", {
     recipientName: varchar("recipient_name", { length: 255 }),
     recipientEmail: varchar("recipient_email", { length: 255 }),
     courseId: varchar("course_id", { length: 255 }).references(() => courses.id, { onDelete: "cascade" }).notNull(),
+    shortCode: varchar("short_code", { length: 20 }).unique().notNull(),
     pdfUrl: text("pdf_url").notNull(),
     verifyHash: varchar("verify_hash", { length: 255 }).unique().notNull(),
     issuedAt: timestamp("issued_at").defaultNow().notNull(),

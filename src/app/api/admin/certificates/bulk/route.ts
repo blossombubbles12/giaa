@@ -5,7 +5,7 @@ import { db } from '@/db';
 import { certificates, users, courses } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { v2 as cloudinary } from 'cloudinary';
-import { generateCertificatePDF, generateVerificationHash } from '@/lib/certificates/generator';
+import { generateCertificatePDF, generateVerificationHash, generateShortCode } from '@/lib/certificates/generator';
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -65,12 +65,15 @@ export async function POST(req: Request) {
 
                 // Generate certificate
                 const verifyHash = generateVerificationHash(email, courseId);
-                const verificationUrl = `${process.env.NEXTAUTH_URL}/verify/${verifyHash}`;
+                const shortCode = generateShortCode();
+                const codeUrl = `${shortCode.slice(0, 3)}-${shortCode.slice(3)}`;
+                const verificationUrl = `${process.env.NEXTAUTH_URL}/verify/${codeUrl}`;
                 const pdfBuffer = await generateCertificatePDF({
                     studentName,
                     courseTitle: course.title,
                     date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }),
                     verificationUrl,
+                    shortCode,
                 });
 
                 // Upload to Cloudinary
@@ -98,11 +101,12 @@ export async function POST(req: Request) {
                     recipientName: existingUser ? null : name,
                     recipientEmail: existingUser ? null : email,
                     courseId,
+                    shortCode,
                     pdfUrl,
                     verifyHash,
                 });
 
-                results.push({ name, email, status: 'success', verifyHash, pdfUrl });
+                results.push({ name, email, status: 'success', verifyHash, pdfUrl, shortCode });
             } catch (err) {
                 const message = err instanceof Error ? err.message : 'Unknown error';
                 results.push({ name: student.name, email: student.email, status: 'failed', error: message });
