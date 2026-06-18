@@ -22,7 +22,8 @@ export default function VerifyLandingPage() {
     <div className="min-h-screen bg-white dark:bg-slate-950">
       {/* Hero */}
       <section className="relative bg-primary-blue overflow-hidden pt-20 pb-32">
-        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: 'radial-gradient(circle at 30% 40%, #a13938 0%, transparent 50%), radial-gradient(circle at 70% 60%, #a13938 0%, transparent 50%)' }} />
+        <div className="absolute inset-0" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1920)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div className="absolute inset-0 bg-primary-blue/85" />
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white dark:from-slate-950 to-transparent" />
         <div className="container relative z-10 text-center pt-12">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>

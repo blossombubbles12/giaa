@@ -44,6 +44,7 @@ export async function POST(req: Request) {
             email: string;
             status: 'success' | 'failed';
             verifyHash?: string;
+            shortCode?: string;
             pdfUrl?: string;
             error?: string;
         }[] = [];
@@ -80,8 +81,8 @@ export async function POST(req: Request) {
                 const uploadResult = await new Promise((resolve, reject) => {
                     const stream = cloudinary.uploader.upload_stream(
                         {
-                            resource_type: 'raw',
-                            folder: 'certificates',
+                            resource_type: 'image',
+                            folder: 'giaconsults',
                             public_id: `cert_${verifyHash}`,
                             format: 'pdf',
                         },

@@ -127,6 +127,9 @@ async function main() {
       "created_at" timestamp DEFAULT now() NOT NULL
     )
   `, 'TABLE event');
+  await exec(`ALTER TABLE "event" ADD COLUMN IF NOT EXISTS "slug" varchar(255)`, `ADD COLUMN event.slug`);
+  await exec(`ALTER TABLE "event" ADD COLUMN IF NOT EXISTS "thumbnail" text`, `ADD COLUMN event.thumbnail`);
+  await exec(`ALTER TABLE "event" ADD COLUMN IF NOT EXISTS "thumbnail_public_id" varchar(255)`, `ADD COLUMN event.thumbnail_public_id`);
 
   await exec(`
     CREATE TABLE IF NOT EXISTS "booking" (

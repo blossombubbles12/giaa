@@ -1,9 +1,10 @@
 import { db } from '@/db';
 import { certificates } from '@/db/schema';
 import { eq, or } from 'drizzle-orm';
-import { ShieldCheck, XCircle, CheckCircle2, User, BookOpen, Calendar, Download, ArrowLeft, Share2, Lock, Hash } from 'lucide-react';
+import { ShieldCheck, XCircle, CheckCircle2, User, BookOpen, Calendar, ArrowLeft, Hash } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { VerifyActions } from '@/components/frontend/verify/VerifyActions';
 
 export default async function VerifyPage({ params }: { params: Promise<{ hash: string }> }) {
   const { hash } = await params;
@@ -18,7 +19,8 @@ export default async function VerifyPage({ params }: { params: Promise<{ hash: s
     <div className="min-h-screen bg-white dark:bg-slate-950 pb-24">
       {/* Header */}
       <section className="relative bg-primary-blue overflow-hidden pt-16 pb-32">
-        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, #a13938 0%, transparent 60%)' }} />
+        <div className="absolute inset-0" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1920)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div className="absolute inset-0 bg-primary-blue/85" />
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-slate-950 to-transparent" />
         <div className="container relative z-10 text-center pt-8">
           <Link href="/verify" className="inline-flex items-center gap-1.5 text-white/50 hover:text-brand text-xs font-bold uppercase tracking-widest mb-6 transition-colors">
@@ -96,20 +98,7 @@ export default async function VerifyPage({ params }: { params: Promise<{ hash: s
                 </div>
 
                 {/* Actions */}
-                <div className="flex flex-wrap gap-3">
-                  <a href={certificate.pdfUrl} target="_blank" rel="noopener noreferrer">
-                    <Button className="bg-brand hover:bg-brand-dark text-white rounded-xl h-12 px-6 font-bold text-xs gap-2 shadow-lg active:scale-95 transition-all">
-                      <Download size={16} /> Download PDF
-                    </Button>
-                  </a>
-                  <Button
-                    variant="outline"
-                    className="rounded-xl h-12 px-6 font-bold text-xs gap-2 border-slate-200 dark:border-slate-700 active:scale-95 transition-all"
-                    onClick={() => { navigator.clipboard?.writeText(`${window.location.origin}/verify/${certificate.shortCode.slice(0, 3)}-${certificate.shortCode.slice(3)}`); }}
-                  >
-                    <Share2 size={16} /> Share Proof
-                  </Button>
-                </div>
+                <VerifyActions pdfUrl={certificate.pdfUrl} shortCode={certificate.shortCode} />
 
                 {/* Seal */}
                 <div className="flex items-center justify-center gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
