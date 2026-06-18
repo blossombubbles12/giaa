@@ -1,128 +1,154 @@
 import { db } from '@/db';
-import { certificates, users, courses } from '@/db/schema';
+import { certificates } from '@/db/schema';
 import { eq } from 'drizzle-orm';
-import { ShieldCheck, XCircle, CheckCircle2, Award, Calendar, User, BookOpen, Download, Share2 } from 'lucide-react';
+import { ShieldCheck, XCircle, CheckCircle2, User, BookOpen, Calendar, Download, ArrowLeft, Share2, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export default async function VerifyPage({ params }: { params: Promise<{ hash: string }> }) {
-    const { hash } = await params;
+  const { hash } = await params;
 
-    const certificate = await db.query.certificates.findFirst({
-        where: eq(certificates.verifyHash, hash),
-        with: {
-            user: true,
-            course: true
-        }
-    });
+  const certificate = await db.query.certificates.findFirst({
+    where: eq(certificates.verifyHash, hash),
+    with: { user: true, course: true },
+  });
 
-    return (
-        <div className="bg-white dark:bg-navy min-h-screen pb-32">
-
-            {/* Header */}
-            <section className="pt-24 pb-48 bg-slate-900 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-10 pointer-events-none">
-                    <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2" />
-                </div>
-                <div className="container relative z-10 text-center space-y-8">
-                    <h4 className="text-brand font-black uppercase tracking-[0.4em] text-xs">Credential Verification</h4>
-                    <h1 className="text-6xl md:text-9xl font-black text-white leading-[0.8] tracking-tighter uppercase">
-                        Validate <span className="text-brand">Identity</span>
-                    </h1>
-                </div>
-            </section>
-
-            {/* Result Section */}
-            <section className="container -mt-24 relative z-20">
-                <div className="max-w-4xl mx-auto">
-                    {certificate ? (
-                        <div className="bg-white dark:bg-slate-950 p-10 md:p-20 rounded-[4rem] shadow-2xl border border-emerald-500/20 dark:border-emerald-500/10 space-y-12 relative overflow-hidden group">
-
-                            {/* Success Accent */}
-                            <div className="absolute top-0 left-0 w-full h-2 bg-emerald-500" />
-                            <div className="absolute -top-24 -right-24 w-64 h-64 bg-emerald-500/5 blur-3xl rounded-full" />
-
-                            <div className="flex flex-col md:flex-row items-center gap-10 text-center md:text-left">
-                                <div className="w-24 h-24 bg-emerald-500 rounded-3xl flex items-center justify-center text-white shadow-xl shadow-emerald-500/20">
-                                    <ShieldCheck size={48} />
-                                </div>
-                                <div className="space-y-2">
-                                    <h3 className="text-3xl font-black uppercase tracking-tighter text-slate-900 dark:text-white">Authentic Credential</h3>
-                                    <p className="text-sm font-black uppercase tracking-widest text-emerald-600">Certificate Verified Successfully</p>
-                                </div>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 py-12 border-y border-slate-100 dark:border-slate-800">
-                                <div className="space-y-6">
-                                    <div className="space-y-1">
-                                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Student Name</p>
-                                        <div className="flex items-center gap-3">
-                                            <User className="w-4 h-4 text-brand" />
-                                            <span className="text-xl font-black uppercase text-slate-900 dark:text-white">{certificate.user.name}</span>
-                                        </div>
-                                    </div>
-                                    <div className="space-y-1">
-                                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Course / Certification</p>
-                                        <div className="flex items-center gap-3">
-                                            <BookOpen className="w-4 h-4 text-blue-500" />
-                                            <span className="text-xl font-black uppercase text-slate-900 dark:text-white">{certificate.course.title}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="space-y-6">
-                                    <div className="space-y-1">
-                                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Issue Date</p>
-                                        <div className="flex items-center gap-3">
-                                            <Calendar className="w-4 h-4 text-purple-500" />
-                                            <span className="text-xl font-black uppercase text-slate-900 dark:text-white">
-                                                {new Date(certificate.issuedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="space-y-1">
-                                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Verification Hash</p>
-                                        <code className="text-xs font-bold text-slate-400 block bg-slate-50 dark:bg-slate-900 px-4 py-2 rounded-xl mt-2 select-all">
-                                            {certificate.verifyHash}
-                                        </code>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="flex flex-wrap gap-4 pt-4">
-                                <Button className="bg-slate-900 dark:bg-white text-white dark:text-slate-950 hover:bg-brand dark:hover:bg-brand hover:text-white rounded-2xl h-14 px-8 font-black uppercase tracking-widest text-xs shadow-xl active:scale-95 transition-all gap-2">
-                                    Download PDF <Download size={16} />
-                                </Button>
-                                <Button variant="outline" className="rounded-2xl h-14 px-8 font-black uppercase tracking-widest text-xs border-slate-200 dark:border-slate-800 transition-all gap-2">
-                                    Share Proof <Share2 size={16} />
-                                </Button>
-                            </div>
-
-                        </div>
-                    ) : (
-                        <div className="bg-white dark:bg-slate-950 p-10 md:p-20 rounded-[4rem] shadow-2xl border border-red-500/20 dark:border-red-500/10 text-center space-y-8 relative overflow-hidden group">
-                            <div className="absolute top-0 left-0 w-full h-2 bg-red-500" />
-                            <div className="w-24 h-24 bg-red-500 rounded-3xl flex items-center justify-center text-white shadow-xl shadow-red-500/20 mx-auto">
-                                <XCircle size={48} />
-                            </div>
-                            <div className="space-y-4">
-                                <h3 className="text-3xl font-black uppercase tracking-tighter text-slate-900 dark:text-white">Verification Failed</h3>
-                                <p className="text-lg text-slate-500 font-medium max-w-sm mx-auto">
-                                    The provided certificate hash could not be found in our secure database.
-                                    Please verify the code and try again.
-                                </p>
-                            </div>
-                            <div className="pt-6">
-                                <Link href="/">
-                                    <Button className="bg-slate-900 dark:bg-white text-white dark:text-slate-950 rounded-2xl h-14 px-10 font-black uppercase tracking-widest text-xs active:scale-95 transition-all">
-                                        Return Home
-                                    </Button>
-                                </Link>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            </section>
-
+  return (
+    <div className="min-h-screen bg-white dark:bg-slate-950 pb-24">
+      {/* Header */}
+      <section className="relative bg-primary-blue overflow-hidden pt-16 pb-32">
+        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, #a13938 0%, transparent 60%)' }} />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-slate-950 to-transparent" />
+        <div className="container relative z-10 text-center pt-8">
+          <Link href="/verify" className="inline-flex items-center gap-1.5 text-white/50 hover:text-brand text-xs font-bold uppercase tracking-widest mb-6 transition-colors">
+            <ArrowLeft size={12} /> Back to Verification
+          </Link>
+          <h1 className="text-3xl md:text-5xl font-black text-white leading-[1.05] tracking-tighter">
+            Certificate <span className="text-brand">Validation</span>
+          </h1>
         </div>
-    );
+      </section>
+
+      {/* Result */}
+      <section className="container -mt-20 relative z-20">
+        <div className="max-w-3xl mx-auto">
+          {certificate ? (
+            <div className="bg-white dark:bg-slate-950 rounded-3xl shadow-2xl border border-emerald-200 dark:border-emerald-900/30 overflow-hidden">
+              {/* Top accent */}
+              <div className="h-1.5 bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600" />
+
+              <div className="p-8 md:p-12 space-y-10">
+                {/* Status header */}
+                <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+                  <div className="w-20 h-20 rounded-2xl bg-emerald-500 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20 shrink-0">
+                    <ShieldCheck size={40} />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-black text-primary-blue dark:text-white tracking-tight">Authentic Credential</h2>
+                    <div className="flex items-center gap-2 mt-2">
+                      <CheckCircle2 size={16} className="text-emerald-500" />
+                      <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">Certificate Verified Successfully</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Certificate details */}
+                <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-8 space-y-8 border border-slate-100 dark:border-slate-800">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-6">
+                      <div>
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Recipient</p>
+                        <div className="flex items-center gap-3">
+                          <User size={16} className="text-brand shrink-0" />
+                          <span className="text-lg font-black text-primary-blue dark:text-white">{certificate.user.name}</span>
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Credential</p>
+                        <div className="flex items-center gap-3">
+                          <BookOpen size={16} className="text-blue-500 shrink-0" />
+                          <span className="text-lg font-black text-primary-blue dark:text-white">{certificate.course.title}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="space-y-6">
+                      <div>
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Issue Date</p>
+                        <div className="flex items-center gap-3">
+                          <Calendar size={16} className="text-purple-500 shrink-0" />
+                          <span className="text-lg font-black text-primary-blue dark:text-white">
+                            {new Date(certificate.issuedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                          </span>
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Verification Hash</p>
+                        <div className="flex items-center gap-3">
+                          <Lock size={16} className="text-amber-500 shrink-0" />
+                          <code className="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 select-all truncate">
+                            {certificate.verifyHash}
+                          </code>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="flex flex-wrap gap-3">
+                  <a href={certificate.pdfUrl} target="_blank" rel="noopener noreferrer">
+                    <Button className="bg-brand hover:bg-brand-dark text-white rounded-xl h-12 px-6 font-bold text-xs gap-2 shadow-lg active:scale-95 transition-all">
+                      <Download size={16} /> Download PDF
+                    </Button>
+                  </a>
+                  <Button
+                    variant="outline"
+                    className="rounded-xl h-12 px-6 font-bold text-xs gap-2 border-slate-200 dark:border-slate-700 active:scale-95 transition-all"
+                    onClick={() => { navigator.clipboard?.writeText(`${window.location.origin}/verify/${certificate.verifyHash}`); }}
+                  >
+                    <Share2 size={16} /> Share Proof
+                  </Button>
+                </div>
+
+                {/* Seal */}
+                <div className="flex items-center justify-center gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+                  <CheckCircle2 size={14} className="text-emerald-500" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                    GIA Advisory Consulting Services &mdash; Verified Credential
+                  </span>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-white dark:bg-slate-950 rounded-3xl shadow-2xl border border-red-200 dark:border-red-900/30 overflow-hidden">
+              <div className="h-1.5 bg-gradient-to-r from-red-400 via-red-500 to-red-600" />
+              <div className="p-8 md:p-12 text-center space-y-8">
+                <div className="w-20 h-20 rounded-2xl bg-red-500 flex items-center justify-center text-white shadow-lg shadow-red-500/20 mx-auto">
+                  <XCircle size={40} />
+                </div>
+                <div className="space-y-3">
+                  <h2 className="text-2xl font-black text-primary-blue dark:text-white tracking-tight">Verification Failed</h2>
+                  <p className="text-slate-500 font-medium max-w-md mx-auto">
+                    The provided certificate hash could not be found in our secure database. Please verify the code and try again.
+                  </p>
+                </div>
+                <div className="flex flex-wrap justify-center gap-3 pt-2">
+                  <Link href="/verify">
+                    <Button className="bg-brand hover:bg-brand-dark text-white rounded-xl h-12 px-8 font-bold text-xs shadow-lg active:scale-95 transition-all">
+                      Try Again
+                    </Button>
+                  </Link>
+                  <Link href="/">
+                    <Button variant="outline" className="rounded-xl h-12 px-8 font-bold text-xs border-slate-200 dark:border-slate-700 active:scale-95 transition-all">
+                      Return Home
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
+  );
 }

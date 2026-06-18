@@ -7,16 +7,24 @@ async function main() {
     console.log('🌱 Seeding database...');
 
     try {
-        const hashedPassword = await bcrypt.hash('admin123', 10);
-
-        // Seed Admin User
+        // Seed Admin Users
+        const adminPassword = await bcrypt.hash('admin123', 10);
         await db.insert(users).values({
             name: 'Admin User',
             email: 'admin@giaadvisory.com',
-            password: hashedPassword,
+            password: adminPassword,
             role: 'ADMIN',
         }).onConflictDoNothing();
-        console.log('✓ Admin user ready');
+        console.log('✓ Admin user (admin@giaadvisory.com) ready');
+
+        const debbyPassword = await bcrypt.hash('Debby221$', 10);
+        await db.insert(users).values({
+            name: 'Debby',
+            email: 'debby@giaconsults.com',
+            password: debbyPassword,
+            role: 'ADMIN',
+        }).onConflictDoNothing();
+        console.log('✓ Admin user (debby@giaconsults.com) ready');
 
         // Seed Default Settings
         const defaultSettings = [

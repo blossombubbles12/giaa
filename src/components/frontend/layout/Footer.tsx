@@ -69,6 +69,7 @@ export function Footer() {
                 { name: 'Case Studies', href: '/case-studies' },
                 { name: 'Insights', href: '/insights' },
                 { name: 'Contact', href: '/contact' },
+                { name: 'Verify Credentials', href: '/verify' },
                 { name: 'Privacy Policy', href: '/privacy-policy' },
                 { name: 'Terms & Conditions', href: '/terms-conditions' },
               ].map((item) => (

@@ -8,7 +8,7 @@ import { Hero } from '@/components/frontend/home/Hero';
 import { ServiceCard } from '@/components/frontend/home/ServiceCard';
 import {
   ArrowRight, Shield, FileCheck, Scale, BarChart3,
-  LineChart, Globe, Users, Lock, CheckCircle2, Target, Eye, Heart,
+  LineChart, Globe, Users, Lock, CheckCircle2, Target, Eye, Heart, ShieldCheck, Search, Award,
 } from 'lucide-react';
 
 const services = [
@@ -234,6 +234,56 @@ export default function Home() {
                 <p className="text-sm text-slate-300 leading-relaxed">{item.text}</p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ CERTIFICATE VERIFICATION ═══ */}
+      <section className="py-16 md:py-20 bg-slate-50 dark:bg-slate-900/30 border-y border-slate-100 dark:border-slate-800">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand/10 border border-brand/20 rounded-full text-brand text-[10px] font-bold uppercase tracking-widest">
+                <ShieldCheck size={12} /> Credential Verification
+              </div>
+              <h2 className="text-2xl md:text-4xl font-black text-primary-blue dark:text-white leading-tight tracking-tighter">
+                Verify a <span className="text-brand">Certificate</span>
+              </h2>
+              <p className="text-sm md:text-base text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+                Instantly confirm the authenticity of any GIA Advisory certificate. 
+                Enter the unique verification hash from the document and get real-time validation.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                <Link href="/verify">
+                  <Button className="bg-brand hover:bg-brand-dark text-white rounded-full h-12 px-8 font-bold text-sm shadow-lg active:scale-95 transition-all">
+                    Verify Now <Search className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+                <div className="flex items-center gap-4 text-xs text-slate-400">
+                  <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-emerald-500" /> Instant</span>
+                  <span className="flex items-center gap-1.5"><ShieldCheck size={14} className="text-brand" /> Secure</span>
+                  <span className="flex items-center gap-1.5"><Award size={14} className="text-blue-500" /> Trusted</span>
+                </div>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="bg-white dark:bg-slate-950 rounded-3xl p-8 shadow-xl border border-slate-100 dark:border-slate-800 text-center space-y-4">
+                <div className="w-16 h-16 rounded-2xl bg-brand/10 flex items-center justify-center text-brand mx-auto">
+                  <ShieldCheck size={32} />
+                </div>
+                <h3 className="text-lg font-bold text-primary-blue dark:text-white">Secure Verification System</h3>
+                <p className="text-sm text-slate-500 max-w-xs mx-auto">
+                  All certificates are secured with SHA-256 encryption and a unique verification hash.
+                </p>
+                <div className="flex items-center justify-center gap-6 pt-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                  <span>SHA-256</span>
+                  <span className="w-1 h-1 rounded-full bg-slate-300" />
+                  <span>Real-Time</span>
+                  <span className="w-1 h-1 rounded-full bg-slate-300" />
+                  <span>Public</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

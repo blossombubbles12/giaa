@@ -147,7 +147,9 @@ export const bookings = pgTable("booking", {
 
 export const certificates = pgTable("certificate", {
     id: varchar("id", { length: 255 }).primaryKey().$defaultFn(() => crypto.randomUUID()),
-    userId: varchar("user_id", { length: 255 }).references(() => users.id, { onDelete: "cascade" }).notNull(),
+    userId: varchar("user_id", { length: 255 }).references(() => users.id, { onDelete: "cascade" }),
+    recipientName: varchar("recipient_name", { length: 255 }),
+    recipientEmail: varchar("recipient_email", { length: 255 }),
     courseId: varchar("course_id", { length: 255 }).references(() => courses.id, { onDelete: "cascade" }).notNull(),
     pdfUrl: text("pdf_url").notNull(),
     verifyHash: varchar("verify_hash", { length: 255 }).unique().notNull(),

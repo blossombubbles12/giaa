@@ -7,7 +7,6 @@ import { eq } from 'drizzle-orm';
 import { v2 as cloudinary } from 'cloudinary';
 import { generateCertificatePDF, generateVerificationHash } from '@/lib/certificates/generator';
 
-// Cloudinary Config (Centralized for this route)
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
@@ -21,30 +20,29 @@ export async function POST(req: Request) {
     }
 
     try {
-        const { userId, courseId } = await req.json();
+        const { name, email, courseId } = await req.json();
 
-        if (!userId || !courseId) {
-            return NextResponse.json({ error: 'User ID and Course ID are required' }, { status: 400 });
+        if (!name || !email || !courseId) {
+            return NextResponse.json({ error: 'Name, email, and course ID are required' }, { status: 400 });
         }
 
-        // 1. Fetch Data
-        const [student, course] = await Promise.all([
-            db.query.users.findFirst({ where: eq(users.id, userId) }),
-            db.query.courses.findFirst({ where: eq(courses.id, courseId) }),
-        ]);
-
-        if (!student || !course) {
-            return NextResponse.json({ error: 'Student or Course not found' }, { status: 404 });
+        // 1. Find course
+        const course = await db.query.courses.findFirst({ where: eq(courses.id, courseId) });
+        if (!course) {
+            return NextResponse.json({ error: 'Course not found' }, { status: 404 });
         }
 
-        // 2. Security: Check if certificate already exists
-        // (Optional: depending on business logic, but good for idempotency)
+        // 2. Check if user exists by email
+        const existingUser = await db.query.users.findFirst({ where: eq(users.email, email) });
 
-        // 3. Generate Logic
-        const verifyHash = generateVerificationHash(userId, courseId);
+        const userId = existingUser?.id ?? null;
+        const studentName = existingUser?.name || name;
+
+        // 3. Generate certificate
+        const verifyHash = generateVerificationHash(email, courseId);
         const verificationUrl = `${process.env.NEXTAUTH_URL}/verify/${verifyHash}`;
         const pdfBuffer = await generateCertificatePDF({
-            studentName: student.name || 'Student',
+            studentName,
             courseTitle: course.title,
             date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }),
             verificationUrl,
@@ -72,6 +70,8 @@ export async function POST(req: Request) {
         // 5. Save to DB
         const [newCert] = await db.insert(certificates).values({
             userId,
+            recipientName: existingUser ? null : name,
+            recipientEmail: existingUser ? null : email,
             courseId,
             pdfUrl,
             verifyHash,

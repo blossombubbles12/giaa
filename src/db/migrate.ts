@@ -42,6 +42,12 @@ async function main() {
     )
   `, 'TABLE user');
 
+  // Missing user columns for full schema compatibility
+  await exec(`ALTER TABLE "user" ADD COLUMN IF NOT EXISTS "email_verified" timestamp`, `ADD COLUMN user.email_verified`);
+  await exec(`ALTER TABLE "user" ADD COLUMN IF NOT EXISTS "verification_token" text`, `ADD COLUMN user.verification_token`);
+  await exec(`ALTER TABLE "user" ADD COLUMN IF NOT EXISTS "reset_token" text`, `ADD COLUMN user.reset_token`);
+  await exec(`ALTER TABLE "user" ADD COLUMN IF NOT EXISTS "reset_token_expires" timestamp`, `ADD COLUMN user.reset_token_expires`);
+
   await exec(`
     CREATE TABLE IF NOT EXISTS "course" (
       "id" varchar(255) PRIMARY KEY NOT NULL,
@@ -134,7 +140,9 @@ async function main() {
   await exec(`
     CREATE TABLE IF NOT EXISTS "certificate" (
       "id" varchar(255) PRIMARY KEY NOT NULL,
-      "user_id" varchar(255) NOT NULL,
+      "user_id" varchar(255),
+      "recipient_name" varchar(255),
+      "recipient_email" varchar(255),
       "course_id" varchar(255) NOT NULL,
       "pdf_url" text NOT NULL,
       "verify_hash" varchar(255) NOT NULL,
@@ -319,6 +327,11 @@ async function main() {
   await exec(`ALTER TABLE "certificate" DROP CONSTRAINT IF EXISTS "certificate_user_id_user_id_fk"`, 'DROP FK certificate->user (2)');
   await exec(`ALTER TABLE "certificate" ADD CONSTRAINT "certificate_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE cascade`, 'FK certificate->user');
 
+  // New certificate columns for guest/unregistered recipients
+  await exec(`ALTER TABLE "certificate" ADD COLUMN IF NOT EXISTS "recipient_name" varchar(255)`, `ADD COLUMN certificate.recipient_name`);
+  await exec(`ALTER TABLE "certificate" ADD COLUMN IF NOT EXISTS "recipient_email" varchar(255)`, `ADD COLUMN certificate.recipient_email`);
+  await exec(`ALTER TABLE "certificate" ALTER COLUMN "user_id" DROP NOT NULL`, 'ALTER certificate.user_id DROP NOT NULL');
+
   await exec(`ALTER TABLE "notification" DROP CONSTRAINT IF EXISTS "notification_user_id_fk"`, 'DROP FK notification->user (1)');
   await exec(`ALTER TABLE "notification" DROP CONSTRAINT IF EXISTS "notification_user_id_user_id_fk"`, 'DROP FK notification->user (2)');
   await exec(`ALTER TABLE "notification" ADD CONSTRAINT "notification_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE cascade`, 'FK notification->user');
@@ -376,11 +389,16 @@ async function main() {
   await exec(`ALTER TABLE "event" ADD COLUMN IF NOT EXISTS "thumbnail_public_id" varchar(255)`, `ADD COLUMN event.thumbnail_public_id`);
 
   const columns = [
+    { name: 'slug', type: 'varchar(255)' },
     { name: 'duration', type: 'varchar(255)' },
     { name: 'access_link', type: 'text' },
     { name: 'category_id', type: 'varchar(255)' },
     { name: 'target_audience', type: 'text' },
-    { name: 'learning_outcomes', type: 'text' }
+    { name: 'learning_outcomes', type: 'text' },
+    { name: 'venue', type: 'varchar(255)' },
+    { name: 'certification_type_id', type: 'varchar(255)' },
+    { name: 'year', type: 'integer' },
+    { name: 'month', type: 'varchar(50)' },
   ];
 
   for (const col of columns) {

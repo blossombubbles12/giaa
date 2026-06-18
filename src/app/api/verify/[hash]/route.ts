@@ -32,7 +32,7 @@ export async function GET(
 
         return NextResponse.json({
             valid: true,
-            studentName: certificate.user.name,
+            studentName: certificate.user?.name ?? certificate.recipientName,
             courseTitle: certificate.course.title,
             issuedAt: certificate.issuedAt,
             pdfUrl: certificate.pdfUrl,

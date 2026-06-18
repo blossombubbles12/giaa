@@ -123,10 +123,11 @@ export async function generateCertificatePDF({
 
 /**
  * Helper to generate a secure verification hash.
+ * identifier is typically the recipient email (works for registered and guest students).
  */
-export function generateVerificationHash(userId: string, courseId: string) {
+export function generateVerificationHash(identifier: string, courseId: string) {
     const secret = process.env.NEXTAUTH_SECRET || 'gia-secret';
     return crypto.createHash('sha256')
-        .update(`${userId}-${courseId}-${Date.now()}-${secret}`)
+        .update(`${identifier}-${courseId}-${Date.now()}-${secret}`)
         .digest('hex');
 }

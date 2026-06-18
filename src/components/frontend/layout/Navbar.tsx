@@ -30,6 +30,7 @@ const navLinks = [
   { name: 'Industries', href: '/industries' },
   { name: 'Case Studies', href: '/case-studies' },
   { name: 'Insights', href: '/insights' },
+  { name: 'Verify', href: '/verify' },
   { name: 'Contact', href: '/contact' },
 ];
 
