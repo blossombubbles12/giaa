@@ -61,7 +61,7 @@ export default async function VerifyPage({ params }: { params: Promise<{ hash: s
                         <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Recipient</p>
                         <div className="flex items-center gap-3">
                           <User size={16} className="text-brand shrink-0" />
-                          <span className="text-lg font-black text-primary-blue dark:text-white">{certificate.user.name}</span>
+                          <span className="text-lg font-black text-primary-blue dark:text-white">{certificate.user?.name ?? certificate.recipientName}</span>
                         </div>
                       </div>
                       <div>
