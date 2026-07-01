@@ -133,14 +133,13 @@ export default function StudentCertificatesPage() {
 
                             <div className="p-4 bg-slate-950/50 border-t border-slate-800 flex items-center gap-2">
                                 <a
-                                    href={cert.pdfUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                    href={`/api/certificates/download/${cert.id}`}
+                                    download={`certificate-${cert.id}.pdf`}
                                     className="flex-1"
                                 >
                                     <Button className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-xl h-10 px-4 text-[10px] font-black uppercase tracking-widest gap-2">
-                                        <ExternalLink size={14} />
-                                        View
+                                        <Download size={14} />
+                                        Download
                                     </Button>
                                 </a>
                                 <Button
@@ -151,18 +150,6 @@ export default function StudentCertificatesPage() {
                                 >
                                     <Share2 size={16} />
                                 </Button>
-                                <a
-                                    href={cert.pdfUrl}
-                                    download
-                                >
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        className="w-10 h-10 rounded-xl text-slate-500 hover:text-emerald-500 hover:bg-emerald-500/10 transition-all"
-                                    >
-                                        <Download size={16} />
-                                    </Button>
-                                </a>
                             </div>
                         </div>
                     ))}

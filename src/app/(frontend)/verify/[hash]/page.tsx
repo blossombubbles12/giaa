@@ -98,7 +98,7 @@ export default async function VerifyPage({ params }: { params: Promise<{ hash: s
                 </div>
 
                 {/* Actions */}
-                <VerifyActions pdfUrl={certificate.pdfUrl} shortCode={certificate.shortCode} />
+                <VerifyActions certId={certificate.id} shortCode={certificate.shortCode} />
 
                 {/* Seal */}
                 <div className="flex items-center justify-center gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">

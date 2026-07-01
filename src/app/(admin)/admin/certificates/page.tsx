@@ -378,8 +378,8 @@ export default function AdminCertificatesPage() {
                                                                 ) : null}
                                                             </td>
                                                             <td className="px-4 py-2.5">
-                                                                {r.pdfUrl && (
-                                                                    <a href={r.pdfUrl} target="_blank" rel="noopener noreferrer"
+                                                                {r.shortCode && (
+                                                                    <a href={`/verify/${r.shortCode}`} target="_blank" rel="noopener noreferrer"
                                                                         className="text-blue-400 hover:text-blue-300 transition-colors">
                                                                         <ExternalLink size={14} />
                                                                     </a>
@@ -530,13 +530,13 @@ export default function AdminCertificatesPage() {
                                         </td>
                                         <td className="px-6 py-6 text-right">
                                             <div className="flex items-center justify-end gap-2">
-                                                <a href={cert.pdfUrl} target="_blank" rel="noopener noreferrer">
+                                                <a href={`/api/certificates/download/${cert.id}`} download={`certificate-${cert.id}.pdf`}>
                                                     <Button variant="ghost" size="icon"
                                                         className="w-10 h-10 rounded-xl text-slate-500 hover:text-white hover:bg-slate-800 transition-all border border-transparent hover:border-slate-700 shadow-inner">
-                                                        <ExternalLink size={16} />
+                                                        <Download size={16} />
                                                     </Button>
                                                 </a>
-                                                <a href={cert.pdfUrl} download={`certificate-${cert.id}.pdf`}>
+                                                <a href={`/verify/${cert.shortCode}`} target="_blank" rel="noopener noreferrer">
                                                     <Button variant="ghost" size="icon"
                                                         className="w-10 h-10 rounded-xl text-slate-500 hover:text-blue-400 hover:bg-blue-400/10 transition-all border border-transparent hover:border-blue-500/20 shadow-inner">
                                                         <Download size={16} />
