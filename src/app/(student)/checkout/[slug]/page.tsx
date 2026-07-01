@@ -455,7 +455,7 @@ export default function CheckoutPage() {
                                         <div className="relative">
                                             <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                                             <Input
-                                                placeholder="e.g. +234 800 000 0000"
+                                                placeholder="e.g. +234 707 057 9947"
                                                 className="pl-12 h-14 bg-slate-950 border-slate-800 rounded-2xl focus:border-blue-600 transition-all font-bold"
                                                 value={billingData.phone}
                                                 onChange={e => setBillingData({ ...billingData, phone: e.target.value })}

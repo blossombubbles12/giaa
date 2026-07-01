@@ -40,7 +40,7 @@ export default function ContactPage() {
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs font-bold uppercase tracking-widest text-slate-400">Phone</label>
-                  <input type="tel" className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand/50" placeholder="+234 XXX XXX XXXX" />
+                  <input type="tel" className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand/50" placeholder="+234 707 057 9947" />
                 </div>
               </div>
               <div className="space-y-2">
@@ -79,7 +79,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Phone</p>
-                    <p className="font-bold">+234 XXX XXX XXXX</p>
+                    <p className="font-bold">+234 707 057 9947</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -97,7 +97,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Location</p>
-                    <p className="font-bold">Lagos, Nigeria</p>
+                    <p className="font-bold">198 BnB Mall, Ibeju-Lekki, Lagos-Nigeria</p>
                   </div>
                 </div>
               </div>

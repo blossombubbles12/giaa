@@ -103,7 +103,7 @@ export function ContactForm({ source = 'CONTACT_PAGE', courseId, defaultSubject,
                 <Input 
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="+234 ..." 
+                    placeholder="+234 707 057 9947" 
                     className="h-12 md:h-16 rounded-xl md:rounded-2xl bg-slate-50 dark:bg-slate-900 border-0 px-5 md:px-6 font-bold" 
                 />
             </div>

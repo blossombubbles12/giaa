@@ -66,7 +66,7 @@ export function Navbar({ categories = [] }: NavbarProps) {
       <div className="hidden lg:block bg-primary-blue dark:bg-slate-950 relative z-50">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 flex items-center justify-between text-slate-300 text-xs font-semibold py-2">
           <div className="flex items-center gap-6">
-            <span className="flex items-center gap-2"><Phone size={12} className="text-brand" /> +234 XXX XXX XXXX</span>
+            <span className="flex items-center gap-2"><Phone size={12} className="text-brand" /> +234 707 057 9947</span>
             <span className="flex items-center gap-2"><Mail size={12} className="text-brand" /> info@giaadvisory.com</span>
           </div>
           <div className="flex items-center gap-6">

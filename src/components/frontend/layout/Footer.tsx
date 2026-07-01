@@ -86,11 +86,11 @@ export function Footer() {
           <div className="lg:col-span-3 space-y-5">
             <h4 className="font-bold uppercase tracking-widest text-xs text-brand">Get in Touch</h4>
             <div className="space-y-4">
-              <a href="tel:+234XXXXXXXXXX" className="flex items-center gap-3 text-slate-300 hover:text-brand transition-colors">
+              <a href="tel:+2347070579947" className="flex items-center gap-3 text-slate-300 hover:text-brand transition-colors">
                 <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
                   <Phone className="h-4 w-4 text-brand" />
                 </div>
-                <span className="text-sm font-bold">+234 XXX XXX XXXX</span>
+                <span className="text-sm font-bold">+234 707 057 9947</span>
               </a>
               <a href="mailto:info@giaadvisory.com" className="flex items-center gap-3 text-slate-300 hover:text-brand transition-colors">
                 <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
@@ -101,8 +101,8 @@ export function Footer() {
               <div className="flex gap-3">
                 <MapPin className="h-5 w-5 text-brand shrink-0 mt-0.5" />
                 <div className="text-sm text-slate-300">
-                  <p className="font-bold text-white mb-1">Lagos, Nigeria</p>
-                  <p>Head Office</p>
+                  <p className="font-bold text-white mb-1">198 BnB Mall, Ibeju-Lekki</p>
+                  <p>Lagos-Nigeria</p>
                 </div>
               </div>
             </div>

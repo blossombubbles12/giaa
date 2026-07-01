@@ -143,7 +143,7 @@ export function InquiryModal({ space, isOpen, onClose }: InquiryModalProps) {
                                         <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-brand transition-colors" />
                                         <Input
                                             required
-                                            placeholder="+234 ..."
+                                            placeholder="+234 707 057 9947"
                                             className="pl-12 h-14 bg-slate-50 dark:bg-slate-950 border-slate-100 dark:border-slate-800 rounded-2xl focus:ring-brand focus:border-brand transition-all font-bold"
                                             value={formData.phone}
                                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
